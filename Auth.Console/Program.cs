@@ -1,12 +1,24 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 
 namespace Auth.Console
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static AuthDataContext _context;
+
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            _context = new AuthDataContext();
+            
+        }
+
+        public void CreateNewUserStore()
+        {
+
         }
     }
 }

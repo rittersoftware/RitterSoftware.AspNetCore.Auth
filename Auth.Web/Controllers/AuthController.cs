@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Auth.Web.Controllers
 {
-    [Route("auth")]
+    [Route("{culture}/[controller]")]
     public class AuthController : Controller
     {
         private IUserService _userService;
