@@ -20,6 +20,7 @@ namespace Auth.Web.Controllers
         }
 
         [Route("signin")]
+        [HttpGet]
         public IActionResult SignIn()
         {
             return View(new SignInModel());
@@ -55,6 +56,31 @@ namespace Auth.Web.Controllers
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme, "name", null);
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync(principal);
+        }
+
+        [Route("signup")]
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View(new SignUpModel());
+        }
+
+        [Route("signup")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SignUp(SignUpModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (await _userService.AddUser(model.Username, model.Password))
+                {
+                    await SignInUser(model.Username);
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("Error", "Could not add user. Please try again...");
+            }
+
+            return View(model);
         }
 
         [Route("signout")]

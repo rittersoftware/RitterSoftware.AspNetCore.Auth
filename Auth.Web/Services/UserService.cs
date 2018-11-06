@@ -37,7 +37,12 @@ namespace Auth.Web.Services
 
         public Task<bool> AddUser(string username, string password)
         {
-            throw new System.NotImplementedException();
+            if (_users.ContainsKey(username.ToLower()))
+            {
+                return Task.FromResult(false);
+            }
+            _users.Add(username.ToLower(), (BCrypt.Net.BCrypt.HashPassword(password), new User(username)));
+            return Task.FromResult(true);
         }
     }
 }
