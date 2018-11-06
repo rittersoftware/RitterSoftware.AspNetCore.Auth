@@ -1,0 +1,27 @@
+﻿@page
+@model Auth.Web.Pages.UserInformationModel
+@{
+    ViewData["Title"] = "UserInformation";
+}
+
+<div class="starter-template">
+    <h2>Welcome @User.Identity.Name</h2>
+    <p class="lead">
+        Here are your claims
+    </p>
+    <ul>
+        @foreach (var claim in User.Claims)
+        {
+            <li>
+                <em>Issuer: @claim.Issuer</em>
+            </li>
+            <li>
+                <em>Type: @claim.Type</em>
+            </li>
+            <li>
+                <em>Value: @claim.Value</em>
+            </li>
+        }
+    </ul>
+</div>
+

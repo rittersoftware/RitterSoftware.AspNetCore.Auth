@@ -1,0 +1,23 @@
+﻿<div class="jumbotron">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h1>Hello @User.Identity.Name!</h1>
+    }
+    else
+    {
+        <h1>Hello World!</h1>
+    }
+    <p class="lead"></p>
+</div>
+
+<div class="row marketing">
+    <div class="col-lg-6">
+        <h4>Subheading</h4>
+        <p></p>
+    </div>
+
+    <div class="col-lg-6">
+        <h4>Subheading</h4>
+        <p></p>
+    </div>
+</div>
