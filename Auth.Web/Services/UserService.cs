@@ -20,7 +20,19 @@ namespace Auth.Web.Services
         {
             user = null;
             var key = username.ToLower();
-            throw new System.NotImplementedException();
+
+            if (_users.ContainsKey(key))
+            {
+                var hash = _users[key].PasswordHash;
+                if (BCrypt.Net.BCrypt.Verify(password, hash))
+                {
+                    user = _users[key].User;
+                    return Task.FromResult(true);
+                }
+            }
+
+            // something went wrong if we made it here!
+            return Task.FromResult(false);
         }
 
         public Task<bool> AddUser(string username, string password)

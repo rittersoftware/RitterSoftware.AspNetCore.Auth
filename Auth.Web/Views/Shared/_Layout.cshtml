@@ -24,7 +24,7 @@
                 }
                 else
                 {
-                    <li role="presentation" class="active"><a href="#">Sign In</a></li>
+                    <li role="presentation" class="active"><a asp-controller="Auth" asp-action="SignIn">Sign In</a></li>
                 }
             </ul>
         </nav>
@@ -33,5 +33,6 @@
     @RenderBody()
     <footer class="footer"></footer>
 </div>
+@RenderSection("Scripts", required: false)
 </body>
 </html>

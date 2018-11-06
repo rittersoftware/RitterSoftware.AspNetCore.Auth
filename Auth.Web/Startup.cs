@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auth.Web.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,11 @@ namespace Auth.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var users = new Dictionary<string, string> { { "jritter", "password" } };
+
+            services.AddSingleton<IUserService>(new UserService(users));
+            
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
