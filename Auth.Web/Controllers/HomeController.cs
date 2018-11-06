@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Auth.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Auth.Web.Controllers
 {
@@ -14,7 +15,14 @@ namespace Auth.Web.Controllers
         {
             return View();
         }
-        
+
+        [Route("userinformation")]
+        [Authorize]
+        public IActionResult UserInformation()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

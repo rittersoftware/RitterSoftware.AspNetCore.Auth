@@ -15,9 +15,9 @@
             <ul class="nav nav-pills pull-right">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <li role="presentation"><a asp-page="UserInformation">User Information</a></li>
+                    <li role="presentation"><a asp-controller="Home" asp-action="UserInformation">User Information</a></li>
                     <li role="presentation" class="active">
-                        <form method="post">
+                        <form method="post" asp-controller="Auth" asp-action="SignOut" asp-route-returnurl="@Context.Request.Query["returnUrl"]">
                             <button type="submit" class="btn btn-primary">Sign Out</button>
                         </form>
                     </li>
